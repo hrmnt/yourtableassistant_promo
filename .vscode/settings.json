@@ -1,0 +1,101 @@
+{
+  "editor.formatOnSave": false,
+  "editor.insertSpaces": true,
+  "editor.rulers": [80],
+  "editor.tabSize": 2,
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.formatOnSave": true
+  },
+  "[jsonc]": {
+    "editor.formatOnSave": true
+  },
+  "[graphql]": {
+    "editor.formatOnSave": true
+  },
+  "[yaml]": {
+    "editor.formatOnSave": true
+  },
+
+  "emmet.showExpandedAbbreviation": "never",
+
+  "eslint.autoFixOnSave": false,
+  "eslint.options": {
+    "extensions": [".js", ".ts", ".tsx"],
+    "rules": {
+      "sort-imports-es6-autofix/sort-imports-es6": "off"
+    }
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    },
+    {
+      "language": "graphql",
+      "autoFix": true
+    }
+  ],
+
+  "files.associations": {
+    ".graphqlconfig": "json",
+    "Dockerfile-*": "dockerfile",
+    "tslint.json": "jsonc"
+  },
+  "files.autoSave": "off",
+  "files.exclude": {
+    "**/.git/": true,
+    "**/node_modules/": true,
+    "**/.DS_Store": true,
+    "*/build/": true,
+    "*/*/build/": true,
+    "hub/.cache/": true,
+    "hub/dist/": true,
+    "mobile/android/.classpath": true,
+    "mobile/android/.factorypath": true,
+    "mobile/android/.project": true,
+    "mobile/android/.settings/": true,
+    ".eslintcache": true
+  },
+
+  "search.exclude": {
+    "**/node_modules/": true,
+    "/mobile/ios/Pods/": true
+  },
+
+  "javascript.implicitProjectConfig.checkJs": true,
+  "javascript.suggestionActions.enabled": false,
+  "javascript.validate.enable": true,
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "typescript.format.enable": false,
+
+  "css.validate": false,
+  "scss.validate": false,
+  "tslint.enable": false,
+  "java.autobuild.enabled": false,
+  "java.configuration.updateBuildConfiguration": "disabled",
+
+  "react-native-storybooks.port": 7007,
+  "react-native-storybooks.storyRegex": "mobile/src/**/*.story.tsx",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": false
+  }
+}

@@ -1,0 +1,18 @@
+# Dotfiles
+!.*
+
+# Node.js
+**/node_modules/
+
+# Compilation artifacts
+/*/build/
+/*/*/build/
+/hub/.cache/
+/hub/dist/
+
+# Generated files
+**/__generated__/
+**/test/coverage/
+
+# Unparseable files
+/mobile/index.js
