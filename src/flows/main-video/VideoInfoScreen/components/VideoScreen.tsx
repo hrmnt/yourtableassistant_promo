@@ -4,7 +4,7 @@ import isBase from '@sindresorhus/is';
 import {Transition} from 'react-navigation-fluid-transitions';
 
 import {Measurements} from 'src/utils/measurements';
-import {Res} from 'src/resource/index';
+import {Res} from 'src/resources/index';
 import {Header} from 'src/components';
 
 const Container = glamorous.scrollView({

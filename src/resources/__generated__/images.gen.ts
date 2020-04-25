@@ -5,6 +5,7 @@ export const images = {
   addNewDriverIcon: require('../../../assets/images/add-new-driver-icon.png'),
   arrowsFacingEachOtherIcon: require('../../../assets/images/arrows-facing-each-other-icon.png'),
   backButtonIcon: require('../../../assets/images/back-button-icon.png'),
+  backgroundIcon: require('../../../assets/images/background-icon.png'),
   brickIcon: require('../../../assets/images/brick-icon.png'),
   cakeIcon: require('../../../assets/images/cake-icon.png'),
   cameraIcon: require('../../../assets/images/camera-icon.png'),

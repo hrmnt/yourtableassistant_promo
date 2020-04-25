@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import {Header as HH} from 'react-navigation';
 import glamorous from 'glamorous-native';
-import {Res} from 'src/resource';
+import {Res} from 'src/resources';
 
 const Container = glamorous.view({
   height: HH.HEIGHT + HH.HEIGHT / 2,

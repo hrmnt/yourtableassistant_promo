@@ -2,7 +2,7 @@ import React, {FunctionComponent} from 'react';
 import glamorous from 'glamorous-native';
 
 import {ShowInfo} from 'src/types/types';
-import {Res} from 'src/resource/index';
+import {Res} from 'src/resources/index';
 import {Show} from 'src/components';
 
 const Container = glamorous.view({

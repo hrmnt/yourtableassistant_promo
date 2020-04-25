@@ -3,7 +3,7 @@ import glamorous from 'glamorous-native';
 import isBase from '@sindresorhus/is';
 
 import {ShowInfo} from 'src/types/types';
-import {Res} from 'src/resource/index';
+import {Res} from 'src/resources/index';
 import {Measurements} from 'src/utils/measurements';
 import {Transition} from 'react-navigation-fluid-transitions';
 
