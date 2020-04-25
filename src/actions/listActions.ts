@@ -90,3 +90,12 @@ export const toggleProduct = (id: string, action: PRODUCT_ACTION) => async (
     payload: id,
   });
 };
+
+export const toggleProductItem = (item: any, action: PRODUCT_ACTION) => async (
+  dispatch: (arg0: {type: string; payload: any}) => void,
+) => {
+  dispatch({
+    type: action,
+    payload: item,
+  });
+};

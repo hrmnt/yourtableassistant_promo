@@ -25,7 +25,6 @@ export const convertQuery = (querySnapshot: any) => {
 export const deleteItem = (array: any[], item: any) => {
   const restoredArray = array;
   const index = restoredArray.indexOf(item);
-  console.log(index);
   if (index >= 0) {
     restoredArray.splice(index, 1);
   }

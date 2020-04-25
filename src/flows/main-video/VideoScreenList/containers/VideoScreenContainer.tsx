@@ -2,7 +2,7 @@ import {connect, ConnectedProps} from 'react-redux';
 import React, {FunctionComponent, useCallback, useEffect} from 'react';
 
 import {} from 'react-navigation';
-import {Header} from 'src/components';
+import {Header, BucketButton} from 'src/components';
 import {getListOfCollections} from 'src/actions/listActions';
 
 import {VideoScreen} from '../components';
@@ -28,11 +28,13 @@ const VideoScreenContainer: FunctionComponent<VideoScreenContainerProps> = (
     <>
       <Header title="Collection" />
       <VideoScreen onShowPress={props.onShowPress} films={props.films} />
+      {props.bucket.length > 0 && <BucketButton />}
     </>
   );
 };
 const mapStateToProps = (store: any) => ({
   films: store.list,
+  bucket: store.bucket,
 });
 
 const mapDispatchToProps = (dispatch: (arg0: any) => any) => ({

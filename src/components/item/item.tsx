@@ -65,13 +65,12 @@ interface ItemProps {
   data: any;
   bucket: any[];
   index: number;
-  handleItem: (id: string, action: PRODUCT_ACTION) => void;
+  handleItem?: (item: any, action: PRODUCT_ACTION, count?: number) => void;
 }
 
 const Item: FunctionComponent<ItemProps> = (props) => {
   const {data, index, handleItem, bucket} = props;
   const count = () => {
-    console.log('COUNT', bucket, data);
     return bucket.filter((item) => item === data.id).length;
   };
 
@@ -81,13 +80,19 @@ const Item: FunctionComponent<ItemProps> = (props) => {
         <Title>{data.name}</Title>
       </InfoBlock>
       <ButtonBlock>
-        <Button onPress={() => handleItem(data.id, PRODUCT_ACTION.add)}>
-          <Icon source={Res.images.plusIcon} />
-        </Button>
+        {handleItem && (
+          <Button onPress={() => handleItem(data, PRODUCT_ACTION.add, count())}>
+            <Icon source={Res.images.plusIcon} />
+          </Button>
+        )}
+
         <CountText>{count()}</CountText>
-        <Button onPress={() => handleItem(data.id, PRODUCT_ACTION.remove)}>
-          <Icon source={Res.images.brickIcon} />
-        </Button>
+        {handleItem && (
+          <Button
+            onPress={() => handleItem(data, PRODUCT_ACTION.remove, count())}>
+            <Icon source={Res.images.brickIcon} />
+          </Button>
+        )}
       </ButtonBlock>
     </Container>
   );

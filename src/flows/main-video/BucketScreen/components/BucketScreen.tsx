@@ -3,7 +3,6 @@ import glamorous from 'glamorous-native';
 
 import {Res} from 'src/resources/index';
 import {Header, Item} from 'src/components';
-import {PRODUCT_ACTION} from 'src/types/requestTypes';
 
 const Container = glamorous.view({
   flex: 1,
@@ -12,35 +11,26 @@ const Container = glamorous.view({
 
 const ItemsList = glamorous.flatList({});
 
-interface TypeListProps {
-  items: any[];
-  id: string;
+interface BucketScreenProps {
   bucket: any[];
+  bucketItemList: any[];
   onBack: () => void;
-  handleItem: (item: any, action: PRODUCT_ACTION, count?: number) => void;
 }
 
-const TypeList: FunctionComponent<TypeListProps> = (props) => {
+const BucketScreen: FunctionComponent<BucketScreenProps> = (props) => {
   const renderItem = (data: any) => {
-    return (
-      <Item
-        bucket={props.bucket}
-        handleItem={props.handleItem}
-        index={data.index}
-        data={data.item}
-      />
-    );
+    return <Item bucket={props.bucket} index={data.index} data={data.item} />;
   };
   return (
     <Container>
-      <Header onBack={props.onBack} title={props.id} />
+      <Header onBack={props.onBack} title={'Bucket'} />
       <ItemsList
         contentContainerStyle={{padding: Res.space.md}}
-        data={props.items}
+        data={props.bucketItemList}
         renderItem={renderItem}
       />
     </Container>
   );
 };
 
-export default TypeList;
+export default BucketScreen;

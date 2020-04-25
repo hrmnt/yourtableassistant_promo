@@ -2,6 +2,7 @@ import {createStackNavigator} from 'react-navigation';
 
 import VideoScreenList from './VideoScreenList';
 import VideoInfoScreen from './VideoInfoScreen';
+import BucketScreen from './BucketScreen';
 
 const mainVideoFlow = createStackNavigator(
   {
@@ -10,6 +11,9 @@ const mainVideoFlow = createStackNavigator(
     },
     VideoInfoScreen: {
       screen: VideoInfoScreen,
+    },
+    BucketScreen: {
+      screen: BucketScreen,
     },
   },
   {

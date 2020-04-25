@@ -35,6 +35,23 @@ export default function videosReducer(
         bucket: newList,
       };
     }
+    case PRODUCT_ACTION.itemAdd: {
+      const bucketList = [...state.bucketItemList, action.payload];
+      return {
+        ...state,
+        loading: false,
+        bucketItemList: bucketList,
+      };
+    }
+    case PRODUCT_ACTION.itemRemove: {
+      const bucketList = [...state.bucketItemList];
+      const newList = deleteItem(bucketList, action.payload);
+      return {
+        ...state,
+        loading: false,
+        bucketItemList: newList,
+      };
+    }
     default:
       return state;
   }

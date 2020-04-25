@@ -11,7 +11,7 @@ const IPHONE_XSMAX_HEIGHT = 896;
 
 const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
-const isIphoneX = () =>
+export const isIphoneX = () =>
   (Platform.OS === 'ios' &&
     ((screenHeight === IPHONE_X_HEIGHT && screenWidth === IPHONE_X_WIDTH) ||
       (screenHeight === IPHONE_X_WIDTH && screenWidth === IPHONE_X_HEIGHT))) ||
