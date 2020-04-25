@@ -1,3 +1,3 @@
-import VideoScreen from './VideoScreen';
+import TypeList from './TypeList';
 
-export {VideoScreen};
+export {TypeList};

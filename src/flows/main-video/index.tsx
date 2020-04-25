@@ -12,7 +12,9 @@ const mainVideoFlow = createStackNavigator(
       screen: VideoInfoScreen,
     },
   },
-  {},
+  {
+    headerMode: 'none',
+  },
 );
 
 export {mainVideoFlow};

@@ -1,22 +1,27 @@
 import API from 'src/api/requests';
-import {LIST_LOAD, LIST_SUCCESS, LIST_ERROR} from 'src/types/requestTypes';
-import {ShowInfo} from 'src/types/types';
+import {
+  LIST_LOAD,
+  LIST_SUCCESS,
+  LIST_ERROR,
+  PRODUCT_ACTION,
+} from 'src/types/requestTypes';
 import {AsyncStorage} from 'react-native';
 
-export const getListOfShows = (currentPage: number) => async (
+export const getListOfCollections = () => async (
   dispatch: (arg0: {type: string; payload: any}) => void,
 ) => {
+  console.log('STARTED');
   dispatch({
     type: `${LIST_LOAD}`,
     payload: {},
   });
-  API.getShowLookups({
-    page: currentPage,
-  })
-    .then((res: {data: ShowInfo[]}) => {
+
+  API.getShowLookups()
+    .then((res: any) => {
+      console.log('RES:', res);
       dispatch({
         type: `${LIST_SUCCESS}`,
-        payload: res.data,
+        payload: res,
       });
     })
     .catch((e: any) => {
@@ -75,4 +80,13 @@ export const storeData = async (id?: number) => {
   } catch (e) {
     // saving error
   }
+};
+
+export const toggleProduct = (id: string, action: PRODUCT_ACTION) => async (
+  dispatch: (arg0: {type: string; payload: any}) => void,
+) => {
+  dispatch({
+    type: action,
+    payload: id,
+  });
 };

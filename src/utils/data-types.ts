@@ -1,10 +1,3 @@
-import {
-  some,
-  none,
-  getRefinement,
-  fromNullable,
-  fromPredicate,
-} from 'fp-ts/lib/Option';
 import isBase from '@sindresorhus/is';
 
 export const is = {
@@ -16,20 +9,25 @@ export const is = {
     isBase.integer(value) && value > 0,
 };
 
-export const Opt = {
-  fromNullable,
-  nonEmptyString: fromPredicate(
-    getRefinement<string | null | undefined, string>((value) =>
-      typeof value === 'string' && value.length !== 0 ? some(value) : none,
-    ),
-  ),
-  positiveInt: fromPredicate(
-    getRefinement<number | null | undefined, number>((value) =>
-      typeof value === 'number' && Number.isInteger(value) && value !== 0
-        ? some(value)
-        : none,
-    ),
-  ),
+export const convertQuery = (querySnapshot: any) => {
+  const items: any[] = [];
+  querySnapshot.forEach((documentSnapshot: {id: any; data: () => any}) => {
+    items.push({
+      ...documentSnapshot.data(),
+      id: documentSnapshot.id,
+    });
+    console.log('Item ID: ', documentSnapshot.id, documentSnapshot.data());
+  });
+
+  return items;
 };
 
-export {pipe} from 'fp-ts/lib/function';
+export const deleteItem = (array: any[], item: any) => {
+  const restoredArray = array;
+  const index = restoredArray.indexOf(item);
+  console.log(index);
+  if (index >= 0) {
+    restoredArray.splice(index, 1);
+  }
+  return restoredArray;
+};

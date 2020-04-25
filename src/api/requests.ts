@@ -1,17 +1,11 @@
-import axios from 'axios';
-import {config} from '../kernel/config';
+import firestore from '@react-native-firebase/firestore';
+
+import {convertQuery} from 'src/utils/data-types';
 
 class Api {
   http: any;
   constructor() {
-    this.http = axios.create({
-      baseURL: config.apiUrl,
-      timeout: 2000,
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    });
+    this.http = firestore();
   }
 
   addHeader = (key: any, value: any) => {
@@ -27,14 +21,27 @@ class Api {
     }
   };
 
-  getShowLookups = (params: any) => {
-    return this.http.get('/shows', {
-      params,
-    });
+  getShowLookups = async () => {
+    const items = await this.http
+      .collection('itemType')
+      .get()
+      .then((querySnapshot: any) => {
+        return convertQuery(querySnapshot);
+      });
+
+    return items;
   };
 
-  getDetailedShow = (id: number) => {
-    return this.http.get(`/shows/${id}`);
+  getDetailedShow = async (id: string) => {
+    const items = await this.http
+      .collection('items')
+      .where('itemTypeId', '==', id)
+      .get()
+      .then((querySnapshot: any) => {
+        return convertQuery(querySnapshot);
+      });
+
+    return items;
   };
 }
 

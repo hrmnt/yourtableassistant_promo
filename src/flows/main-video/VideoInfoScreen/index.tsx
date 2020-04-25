@@ -1,27 +1,21 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {NavigationScreenComponent} from 'react-navigation';
 
-import {VideoScreenContainer} from './containers';
+import {TypeListContainer} from './containers';
 
-interface VideoScreenProps {}
+interface TypeListProps {}
 
-const VideoInfoScreen: NavigationScreenComponent<VideoScreenProps> = (
-  props,
-) => {
+const VideoInfoScreen: NavigationScreenComponent<TypeListProps> = (props) => {
   const handleBackButton = () => {
     props.navigation.goBack();
   };
 
   return (
-    <VideoScreenContainer
+    <TypeListContainer
       onBack={handleBackButton}
       id={props.navigation.getParam('id')}
     />
   );
 };
-
-VideoInfoScreen.navigationOptions = (screenProps) => ({
-  title: 'Hello',
-});
 
 export default VideoInfoScreen;

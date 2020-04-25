@@ -24,6 +24,7 @@ export const images = {
   closeButtonNotCircledIcon: require('../../../assets/images/close-button-not-circled-icon.png'),
   cloudIcon: require('../../../assets/images/cloud-icon.png'),
   dinnerIcon: require('../../../assets/images/dinner-icon.png'),
+  drinksIcon: require('../../../assets/images/drinks-icon.png'),
   driverIcon: require('../../../assets/images/driver-icon.png'),
   driverProfiles: require('../../../assets/images/driver-profiles.png'),
   editIcon: require('../../../assets/images/edit-icon.png'),

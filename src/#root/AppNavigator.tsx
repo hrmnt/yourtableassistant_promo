@@ -1,12 +1,32 @@
 import React from 'react';
 import {Animated} from 'react-native';
-import {createStackNavigator, createAppContainer} from 'react-navigation';
+import {
+  createStackNavigator,
+  createAppContainer,
+  createBottomTabNavigator,
+} from 'react-navigation';
 
 import {allFlows} from '../flows';
+import {Res} from 'src/resources';
 
 const RootNavigationContainer = createAppContainer(
   createStackNavigator(
     {
+      MainTabs: {
+        screen: createBottomTabNavigator(
+          {
+            ...allFlows,
+          },
+          {
+            initialRouteName: '0',
+            tabBarOptions: {
+              activeTintColor: Res.colors.secondary,
+              inactiveTintColor: Res.colors.neutral400,
+            },
+          },
+        ),
+        path: '',
+      },
       ...allFlows,
     },
     {

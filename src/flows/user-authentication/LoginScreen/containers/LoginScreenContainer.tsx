@@ -1,15 +1,18 @@
 import {connect, ConnectedProps} from 'react-redux';
 import React, {
   FunctionComponent,
-  useCallback,
   useEffect,
+  useCallback,
   useState,
 } from 'react';
+import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 import {} from 'react-navigation';
-import {getListOfShows, toggleFavorite, getData} from 'src/actions/listActions';
+
+import {getListOfShows} from 'src/actions/listActions';
 
 import {LoginScreen} from '../components';
+import {Alert} from 'react-native';
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
@@ -20,45 +23,49 @@ interface LoginScreenContainerProps extends PropsFromRedux {
 const LoginScreenContainer: FunctionComponent<LoginScreenContainerProps> = (
   props,
 ) => {
-  const [favoriteShows, setFavoriteShow] = useState<Number[]>([]);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
 
-  const handleShows = useCallback(() => {
-    props.getList(currentPage);
-  }, [currentPage, props]);
-
-  const handleEndReached = useCallback(async () => {
-    await setCurrentPage(currentPage + 1);
-    handleShows();
-  }, [currentPage, handleShows]);
-
-  const handleFavotites = useCallback(async () => {
-    const favorites = await getData();
-    console.log(favorites);
-    if (favorites !== null) {
-      setFavoriteShow(favorites);
-    }
-  }, []);
-
-  const handleFavorite = useCallback(
-    async (id) => {
-      console.log(id);
-      await toggleFavorite(id);
-      handleFavotites();
+  const onSignIn = useCallback(
+    (email: string, password: string) => {
+      auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+          console.log('User account created & signed in!');
+          props.onSignIn();
+        })
+        .catch(() => {
+          Alert.alert('Wrong credentials');
+        });
     },
-    [handleFavotites],
+    [props],
   );
+
+  const onAuthStateChanged = (user: FirebaseAuthTypes.User | null) => {
+    setUser(user);
+    if (initializing) {
+      setInitializing(false);
+    }
+  };
 
   useEffect(() => {
-    handleShows();
-    handleFavotites();
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
   }, []);
 
-  return (
-    <>
-      <LoginScreen onSignIn={props.onSignIn} />
-    </>
-  );
+  if (initializing) {
+    return null;
+  }
+  if (!user) {
+    return (
+      <>
+        <LoginScreen user={user} onSignIn={onSignIn} />
+      </>
+    );
+  } else {
+    props.onSignIn();
+  }
+  return null;
 };
 const mapStateToProps = (store: any) => ({
   films: store.list,

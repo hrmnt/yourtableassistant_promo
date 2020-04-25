@@ -56,7 +56,8 @@ const Wrapper = glamorous.view<{paddingHorizontal?: number}>({}, (props) => ({
 }));
 
 interface LoginScreenProps {
-  onSignIn: () => void;
+  onSignIn: (email: string, password: string) => void;
+  user: any;
 }
 
 const LoginScreen: FunctionComponent<LoginScreenProps> = (props) => {
@@ -69,7 +70,7 @@ const LoginScreen: FunctionComponent<LoginScreenProps> = (props) => {
       <Section>
         <Logo source={Res.images.errorStateIcon} />
         <Wrapper>
-          <H1>Welcome back</H1>
+          <H1>Welcome back {props.user.name}</H1>
           <Description>Please write your credentials to login</Description>
         </Wrapper>
         <Wrapper paddingHorizontal={40}>
@@ -77,16 +78,21 @@ const LoginScreen: FunctionComponent<LoginScreenProps> = (props) => {
             value={email}
             onChangeText={(value) => setEmail(value)}
             placeholder="Email"
+            returnKeyType="next"
+            enablesReturnKeyAutomatically
           />
           <DefaultField
             value={password}
             onChangeText={(value) => setPassword(value)}
             secureTextEntry
             placeholder="Password"
+            returnKeyLabel="login"
+            enablesReturnKeyAutomatically
+            onSubmitEditing={() => props.onSignIn(email, password)}
           />
         </Wrapper>
         <Wrapper paddingHorizontal={40}>
-          <Button onPress={props.onSignIn}>
+          <Button onPress={() => props.onSignIn(email, password)}>
             <Description>Sign-in</Description>
           </Button>
         </Wrapper>

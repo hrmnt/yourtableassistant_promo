@@ -1,3 +1,3 @@
-import VideoScreenContainer from './VideoScreenContainer';
+import TypeListContainer from './TypeListContainer';
 
-export {VideoScreenContainer};
+export {TypeListContainer};
