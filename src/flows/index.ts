@@ -1,6 +1,7 @@
 import {mainVideoFlow} from './main-video';
 import {authorizationFlow} from './user-authentication';
+import {mainOrdersFlow} from './main-orders';
 
-export const allFlows = [authorizationFlow, mainVideoFlow];
+export const allFlows = [mainOrdersFlow, authorizationFlow, mainVideoFlow];
 
-export {authorizationFlow, mainVideoFlow};
+export {mainOrdersFlow, authorizationFlow, mainVideoFlow};

@@ -11,8 +11,9 @@ const Container = glamorous.view({
 const Field = glamorous.textInput({
   ...Res.textStyles.body2White,
   padding: Res.space.xs,
-  borderBottomColor: Res.colors.translucentWhite,
+  borderBottomColor: Res.colors.white,
   borderBottomWidth: 1,
+  backgroundColor: 'rgba(0,0,0,0.4)',
   fontSize: 16,
 });
 
@@ -21,7 +22,7 @@ interface DefaultFieldProps extends TextInputProps {}
 const DefaultField: FunctionComponent<DefaultFieldProps> = (props) => {
   return (
     <Container>
-      <Field {...props}></Field>
+      <Field placeholderTextColor={Res.colors.white} {...props}></Field>
     </Container>
   );
 };

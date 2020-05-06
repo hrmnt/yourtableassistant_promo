@@ -43,6 +43,17 @@ class Api {
 
     return items;
   };
+
+  writeUserData = async (user: any) => {
+    await this.http
+      .collection('users')
+      .doc(user.uid)
+      .set({...user});
+  };
+
+  makeOrder = async (orderList: any) => {
+    await this.http.collection('orders').add(orderList);
+  };
 }
 
 export default new Api();

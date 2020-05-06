@@ -80,5 +80,6 @@ export const images = {
   verticalDisclosureIcon: require('../../../assets/images/vertical-disclosure-icon.png'),
   verticalFacingUpDisclosureIcon: require('../../../assets/images/vertical-facing-up-disclosure-icon.png'),
   whiskeyIcon: require('../../../assets/images/whiskey-icon.png'),
+  ytaLogo: require('../../../assets/images/yta-logo.png'),
   /* eslint-enable global-require */
 };

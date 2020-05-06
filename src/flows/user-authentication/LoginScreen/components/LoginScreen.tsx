@@ -23,8 +23,8 @@ const BackgroundImage = glamorous.image({
 });
 
 const Logo = glamorous.image({
-  width: Res.space.xxxl * 3,
-  height: Res.space.xxxl * 3,
+  width: Res.space.xxxl * 3.5,
+  height: Res.space.xxxl * 1,
   alignSelf: 'center',
   tintColor: Res.colors.white,
 });
@@ -68,10 +68,10 @@ const LoginScreen: FunctionComponent<LoginScreenProps> = (props) => {
     <Container behavior="padding">
       <BackgroundImage source={Res.images.backgroundIcon} />
       <Section>
-        <Logo source={Res.images.errorStateIcon} />
+        <Logo source={Res.images.ytaLogo} />
         <Wrapper>
-          <H1>Welcome back {props.user.name}</H1>
-          <Description>Please write your credentials to login</Description>
+          {/* <H1>Welcome back </H1>
+          <Description>Please write your credentials to login</Description> */}
         </Wrapper>
         <Wrapper paddingHorizontal={40}>
           <DefaultField

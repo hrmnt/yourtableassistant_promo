@@ -3,9 +3,13 @@ import {createStackNavigator} from 'react-navigation';
 import VideoScreenList from './VideoScreenList';
 import VideoInfoScreen from './VideoInfoScreen';
 import BucketScreen from './BucketScreen';
+import OptionsList from '../main-orders/OptionsListScreen';
 
 const mainVideoFlow = createStackNavigator(
   {
+    Orders: {
+      screen: OptionsList,
+    },
     VideoScreenList: {
       screen: VideoScreenList,
     },
@@ -18,6 +22,7 @@ const mainVideoFlow = createStackNavigator(
   },
   {
     headerMode: 'none',
+    initialRouteName: 'Orders',
   },
 );
 

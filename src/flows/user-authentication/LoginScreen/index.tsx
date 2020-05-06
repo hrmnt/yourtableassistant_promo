@@ -7,7 +7,7 @@ interface LoginScreenProps {}
 
 const LoginScreen: NavigationScreenComponent<LoginScreenProps> = (props) => {
   const handleSignIn = useCallback(() => {
-    props.navigation.navigate('VideoScreenList');
+    props.navigation.navigate('MainMenu');
   }, [props.navigation]);
 
   return <LoginScreenContainer onSignIn={handleSignIn} />;

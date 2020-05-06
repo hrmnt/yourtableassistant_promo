@@ -23,7 +23,7 @@ const ShowContainer = glamorous.view<{divider: boolean}>(
     marginBottom: Res.space.sm,
   },
   (props) => ({
-    marginRight: props.divider ? 0 : Res.space.sm,
+    marginRight: props.divider ? Res.space.sm : 0,
   }),
 );
 
@@ -64,7 +64,7 @@ const Show: FunctionComponent<ShowProps> = (props) => {
   const {data, index, onShowPress} = props;
   return (
     <Button onPress={() => onShowPress(data.id)}>
-      <ShowContainer divider={index % 2 === 1}>
+      <ShowContainer divider={index % 2 === 0}>
         <ImageContainer>
           <ShowImagePreview source={Res.images.drinksIcon} />
         </ImageContainer>

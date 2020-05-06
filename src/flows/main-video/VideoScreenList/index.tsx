@@ -7,13 +7,22 @@ interface VideoScreenProps {}
 
 const VideoScreen: NavigationScreenComponent<VideoScreenProps> = (props) => {
   const handleShowMovie = useCallback(
-    (id: number) => {
+    (id: string) => {
       props.navigation.navigate('VideoInfoScreen', {id});
     },
     [props.navigation],
   );
 
-  return <VideoScreenContainer onShowPress={handleShowMovie} />;
+  const handleBackButton = () => {
+    props.navigation.goBack();
+  };
+
+  return (
+    <VideoScreenContainer
+      handleBackButton={handleBackButton}
+      onShowPress={handleShowMovie}
+    />
+  );
 };
 
 export default VideoScreen;

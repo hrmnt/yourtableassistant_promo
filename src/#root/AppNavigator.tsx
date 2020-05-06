@@ -1,33 +1,18 @@
 import React from 'react';
 import {Animated} from 'react-native';
-import {
-  createStackNavigator,
-  createAppContainer,
-  createBottomTabNavigator,
-} from 'react-navigation';
+import {createStackNavigator, createAppContainer} from 'react-navigation';
 
-import {allFlows} from '../flows';
-import {Res} from 'src/resources';
+import {authorizationFlow, mainOrdersFlow, mainVideoFlow} from '../flows';
 
 const RootNavigationContainer = createAppContainer(
   createStackNavigator(
     {
-      MainTabs: {
-        screen: createBottomTabNavigator(
-          {
-            ...allFlows,
-          },
-          {
-            initialRouteName: '0',
-            tabBarOptions: {
-              activeTintColor: Res.colors.secondary,
-              inactiveTintColor: Res.colors.neutral400,
-            },
-          },
-        ),
-        path: '',
+      Auth: {
+        screen: authorizationFlow,
       },
-      ...allFlows,
+      MainMenu: {
+        screen: mainVideoFlow,
+      },
     },
     {
       mode: 'modal',

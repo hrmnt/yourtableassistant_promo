@@ -99,3 +99,14 @@ export const toggleProductItem = (item: any, action: PRODUCT_ACTION) => async (
     payload: item,
   });
 };
+
+export const makeOrder = (order: any) => async (
+  dispatch: (arg0: {type: string; payload: any}) => void,
+) => {
+  API.makeOrder(order);
+};
+
+export const connectUser = (user: any) => {
+  console.log('CONNECTIONS:', user);
+  API.writeUserData(user);
+};

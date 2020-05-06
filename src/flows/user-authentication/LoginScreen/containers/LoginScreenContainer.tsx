@@ -9,7 +9,7 @@ import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 import {} from 'react-navigation';
 
-import {getListOfShows} from 'src/actions/listActions';
+import {getListOfCollections, connectUser} from 'src/actions/listActions';
 
 import {LoginScreen} from '../components';
 import {Alert} from 'react-native';
@@ -45,6 +45,13 @@ const LoginScreenContainer: FunctionComponent<LoginScreenContainerProps> = (
     setUser(user);
     if (initializing) {
       setInitializing(false);
+      const currentUser = auth().currentUser;
+      if (currentUser) {
+        connectUser({
+          uid: currentUser.uid,
+          name: currentUser.displayName,
+        });
+      }
     }
   };
 
@@ -53,26 +60,29 @@ const LoginScreenContainer: FunctionComponent<LoginScreenContainerProps> = (
     return subscriber; // unsubscribe on unmount
   }, []);
 
-  if (initializing) {
-    return null;
-  }
-  if (!user) {
-    return (
-      <>
-        <LoginScreen user={user} onSignIn={onSignIn} />
-      </>
-    );
-  } else {
-    props.onSignIn();
-  }
-  return null;
+  // if (initializing) {
+  //   return null;
+  // }
+  // if (!user) {
+  return (
+    <>
+      <LoginScreen user={user} onSignIn={onSignIn} />
+    </>
+  );
+  // } else {
+  //   if (user) {
+  //   }
+  //   props.onSignIn();
+  // }
+  // return null;
 };
 const mapStateToProps = (store: any) => ({
   films: store.list,
 });
 
 const mapDispatchToProps = (dispatch: (arg0: any) => any) => ({
-  getList: (page: number) => dispatch(getListOfShows(page)),
+  getList: () => dispatch(getListOfCollections()),
+  writeUserData: (user: any) => connectUser(user),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

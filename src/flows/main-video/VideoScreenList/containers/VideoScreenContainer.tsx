@@ -11,6 +11,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 interface VideoScreenContainerProps extends PropsFromRedux {
   onShowPress: (id: string) => void;
+  handleBackButton: () => void;
 }
 
 const VideoScreenContainer: FunctionComponent<VideoScreenContainerProps> = (
@@ -26,7 +27,7 @@ const VideoScreenContainer: FunctionComponent<VideoScreenContainerProps> = (
 
   return (
     <>
-      <Header title="Collection" />
+      <Header title="Collection" onBack={props.handleBackButton} />
       <VideoScreen onShowPress={props.onShowPress} films={props.films} />
       {props.bucket.length > 0 && <BucketButton />}
     </>

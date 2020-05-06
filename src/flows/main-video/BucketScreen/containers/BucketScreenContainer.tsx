@@ -1,9 +1,9 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useCallback} from 'react';
 
 import {BucketScreen} from '../components';
 import {connect, ConnectedProps} from 'react-redux';
 import {PRODUCT_ACTION} from 'src/types/requestTypes';
-import {toggleProduct} from 'src/actions/listActions';
+import {toggleProduct, makeOrder} from 'src/actions/listActions';
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
@@ -34,6 +34,10 @@ const BucketScreenContainer: FunctionComponent<BucketScreenContainerProps> = (
   //   handleShows();
   // }, []);
 
+  const handleOrder = () => useCallback(() => {
+    props.makeOrder({})
+  }, []);
+
   return (
     <BucketScreen
       onBack={props.onBack}
@@ -51,6 +55,7 @@ const mapStateToProps = (store: any) => ({
 const mapDispatchToProps = (dispatch: (arg0: any) => any) => ({
   toggleProduct: (id: string, action: PRODUCT_ACTION) =>
     dispatch(toggleProduct(id, action)),
+  makeOrder: (order: any) => dispatch(makeOrder(order)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
