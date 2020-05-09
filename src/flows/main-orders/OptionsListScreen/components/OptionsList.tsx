@@ -36,11 +36,11 @@ const OptionsList: FunctionComponent<OptionsListProps> = (props) => {
   return (
     <Container>
       <VideoList
-        numColumns={2}
-        // eslint-disable-next-line react-native/no-inline-styles
         columnWrapperStyle={{
           padding: Res.space.md,
         }}
+        // eslint-disable-next-line react-native/no-inline-styles
+        numColumns={2}
         data={props.menuOptions}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}

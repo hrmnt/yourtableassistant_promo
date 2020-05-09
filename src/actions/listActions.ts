@@ -91,6 +91,15 @@ export const toggleProduct = (id: string, action: PRODUCT_ACTION) => async (
   });
 };
 
+export const clearBucket = () => async (
+  dispatch: (arg0: {type: string; payload: any}) => void,
+) => {
+  dispatch({
+    type: PRODUCT_ACTION.clearBucket,
+    payload: null,
+  });
+};
+
 export const toggleProductItem = (item: any, action: PRODUCT_ACTION) => async (
   dispatch: (arg0: {type: string; payload: any}) => void,
 ) => {
@@ -103,7 +112,8 @@ export const toggleProductItem = (item: any, action: PRODUCT_ACTION) => async (
 export const makeOrder = (order: any) => async (
   dispatch: (arg0: {type: string; payload: any}) => void,
 ) => {
-  API.makeOrder(order);
+  console.log(order);
+  return API.makeOrder(order);
 };
 
 export const connectUser = (user: any) => {

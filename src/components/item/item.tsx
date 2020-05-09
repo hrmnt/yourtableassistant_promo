@@ -35,20 +35,20 @@ const ButtonBlock = glamorous.view({
 
 const Title = glamorous.text({
   ...Res.textStyles.body2,
-  color: Res.colors.primary,
+  color: '#303547',
   fontWeight: '700',
 });
 
 const CountText = glamorous.text({
   ...Res.textStyles.body2,
-  color: Res.colors.cyan900,
+  color: '#303547',
   fontWeight: '700',
 });
 
 const Icon = glamorous.image({
   width: Res.space.lg - 4,
   height: Res.space.lg - 4,
-  tintColor: Res.colors.cyan900,
+  tintColor: Res.colors.primary,
 });
 
 const Button = glamorous.touchableOpacity({
@@ -58,7 +58,7 @@ const Button = glamorous.touchableOpacity({
   justifyContent: 'center',
   borderRadius: Res.space.xl,
   borderWidth: 1,
-  borderColor: Res.colors.cyan900,
+  borderColor: Res.colors.primary,
 });
 
 interface ItemProps {
@@ -81,16 +81,15 @@ const Item: FunctionComponent<ItemProps> = (props) => {
       </InfoBlock>
       <ButtonBlock>
         {handleItem && (
-          <Button onPress={() => handleItem(data, PRODUCT_ACTION.add, count())}>
-            <Icon source={Res.images.plusIcon} />
-          </Button>
-        )}
-
-        <CountText>{count()}</CountText>
-        {handleItem && (
           <Button
             onPress={() => handleItem(data, PRODUCT_ACTION.remove, count())}>
             <Icon source={Res.images.brickIcon} />
+          </Button>
+        )}
+        <CountText>{count()}</CountText>
+        {handleItem && (
+          <Button onPress={() => handleItem(data, PRODUCT_ACTION.add, count())}>
+            <Icon source={Res.images.plusIcon} />
           </Button>
         )}
       </ButtonBlock>

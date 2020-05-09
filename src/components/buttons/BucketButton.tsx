@@ -32,7 +32,7 @@ const BucketButton: FunctionComponent<BucketButtonProps> = (props) => {
   return (
     <Container
       onPress={() => {
-        console.log(props.navigation.navigate('BucketScreen'));
+        props.navigation.navigate('BucketScreen');
       }}>
       <Title>Order ({props.bucket.length})</Title>
     </Container>

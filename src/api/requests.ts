@@ -52,7 +52,11 @@ class Api {
   };
 
   makeOrder = async (orderList: any) => {
-    await this.http.collection('orders').add(orderList);
+    return await this.http
+      .collection('orders')
+      .add(orderList)
+      .then(() => 'Success')
+      .catch(() => 'Error');
   };
 }
 

@@ -6,6 +6,7 @@ import {Header, BucketButton} from 'src/components';
 import {getListOfCollections} from 'src/actions/listActions';
 
 import {OptionsList} from '../components';
+import {Res} from 'src/resources';
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
@@ -18,22 +19,33 @@ const OptionsListContainer: FunctionComponent<OptionsListContainerProps> = (
 ) => {
   const menuOptions = [
     {
-      name: 'Новый заказ',
+      name: 'New order',
       id: 'VideoScreenList',
+      image: Res.images.plusIcon,
     },
     {
-      name: 'История',
+      name: 'History',
       id: 'VideoScreenList',
+      image: Res.images.whiskeyIcon,
     },
     {
-      name: 'История',
+      name: 'Product income',
       id: 'VideoScreenList',
+      image: Res.images.refreshIcon,
+      disabled: true,
+    },
+    {
+      name: 'Product outcome',
+      id: 'VideoScreenList',
+      image: Res.images.refreshIcon,
+      reversed: true,
+      disabled: true,
     },
   ];
 
   return (
     <>
-      <Header title="Main menu" />
+      <Header main title="Main menu" />
       <OptionsList
         menuOptions={menuOptions}
         onShowPress={props.onShowPress}

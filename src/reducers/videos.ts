@@ -52,6 +52,14 @@ export default function videosReducer(
         bucketItemList: newList,
       };
     }
+    case PRODUCT_ACTION.clearBucket: {
+      return {
+        ...state,
+        loading: false,
+        bucket: [],
+        bucketItemList: [],
+      };
+    }
     default:
       return state;
   }

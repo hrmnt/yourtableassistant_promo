@@ -15,6 +15,7 @@ interface BucketScreenProps {
   bucket: any[];
   bucketItemList: any[];
   onBack: () => void;
+  onOrder: (bucket: any) => void;
 }
 
 const BucketScreen: FunctionComponent<BucketScreenProps> = (props) => {

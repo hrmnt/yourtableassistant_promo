@@ -8,7 +8,6 @@ import {KeyboardAvoidingView} from 'react-native';
 
 const Container = glamorous(KeyboardAvoidingView)({
   flex: 1,
-  backgroundColor: Res.colors.third,
   paddingTop: Res.space.md,
 });
 
@@ -30,10 +29,10 @@ const Logo = glamorous.image({
 });
 
 const H1 = glamorous.text({
-  ...Res.textStyles.title1,
+  ...Res.textStyles.title2,
   paddingLeft: Res.space.sm,
   textAlign: 'center',
-  color: Res.colors.white,
+  color: '#2d3546',
 });
 
 const Description = glamorous.text({
@@ -42,11 +41,13 @@ const Description = glamorous.text({
   marginVertical: Res.space.md,
   textAlign: 'center',
   color: Res.colors.white,
+  fontWeight: '500',
 });
 
 const Button = glamorous.touchableOpacity({
   backgroundColor: Res.colors.primary,
-  borderRadius: 30,
+  paddingVertical: Res.space.xs,
+  borderRadius: 14,
   alignItems: 'center',
   justifyContent: 'center',
 });
@@ -66,18 +67,20 @@ const LoginScreen: FunctionComponent<LoginScreenProps> = (props) => {
 
   return (
     <Container behavior="padding">
-      <BackgroundImage source={Res.images.backgroundIcon} />
       <Section>
         <Logo source={Res.images.ytaLogo} />
         <Wrapper>
-          {/* <H1>Welcome back </H1>
-          <Description>Please write your credentials to login</Description> */}
+          <H1>Welcome back </H1>
+          <Description style={{color: '#c5cad4'}}>
+            Please write your credentials to login
+          </Description>
         </Wrapper>
         <Wrapper paddingHorizontal={40}>
           <DefaultField
             value={email}
             onChangeText={(value) => setEmail(value)}
             placeholder="Email"
+            keyboardType="email-address"
             returnKeyType="next"
             enablesReturnKeyAutomatically
           />
@@ -93,7 +96,7 @@ const LoginScreen: FunctionComponent<LoginScreenProps> = (props) => {
         </Wrapper>
         <Wrapper paddingHorizontal={40}>
           <Button onPress={() => props.onSignIn(email, password)}>
-            <Description>Sign-in</Description>
+            <Description>Continue</Description>
           </Button>
         </Wrapper>
       </Section>

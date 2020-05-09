@@ -5,9 +5,9 @@ import {ShowInfo} from 'src/types/types';
 import {Res} from 'src/resources/index';
 import {Measurements} from 'src/utils/measurements';
 
-const ShowContainer = glamorous.view<{divider: boolean}>(
+const ShowContainer = glamorous.view<{divider: boolean; disabled: boolean}>(
   {
-    height: Measurements.screenHeight / 6,
+    minHeight: Measurements.screenHeight / 8,
     flex: 1,
     backgroundColor: Res.colors.white,
     shadowColor: Res.colors.black,
@@ -15,39 +15,53 @@ const ShowContainer = glamorous.view<{divider: boolean}>(
       width: 0,
       height: 2,
     },
+    flexDirection: 'column',
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
     elevation: 5,
     borderRadius: Res.space.md,
     marginBottom: Res.space.sm,
+    padding: Res.space.sm,
   },
   (props) => ({
     marginRight: props.divider ? Res.space.sm : 0,
+    backgroundColor: props.disabled ? '#f4f7fc' : '#fff',
   }),
 );
 
 const ImageContainer = glamorous.view({
-  flex: 3,
-  alignItems: 'center',
-  justifyContent: 'center',
+  flex: 1,
+  justifyContent: 'flex-start',
+  alignItems: 'flex-end',
 });
 
-const ShowImagePreview = glamorous.image({
-  height: Res.space.xxxl,
-  width: Res.space.xxxl,
-});
+const ShowImagePreview = glamorous.image<{reversed: boolean}>(
+  {
+    height: Res.space.xl,
+    width: Res.space.xl,
+    tintColor: Res.colors.primary,
+  },
+  (props) => ({
+    transform: [{rotateY: props.reversed ? '180deg' : '0deg'}],
+  }),
+);
 
 const ShowInfoPreview = glamorous.view({
   flex: 1,
 });
 
 const Title = glamorous.text({
-  ...Res.textStyles.title2,
-  textAlign: 'center',
+  ...Res.textStyles.body1,
+  fontWeight: '700',
   color: Res.colors.primary,
   textTransform: 'capitalize',
-  flex: 1,
+});
+
+const Description = glamorous.text({
+  ...Res.textStyles.body2,
+  fontWeight: '500',
+  color: '#adb7c5',
+  textTransform: 'capitalize',
 });
 
 const Button = glamorous.touchableOpacity({
@@ -63,14 +77,13 @@ interface ShowProps {
 const Show: FunctionComponent<ShowProps> = (props) => {
   const {data, index, onShowPress} = props;
   return (
-    <Button onPress={() => onShowPress(data.id)}>
-      <ShowContainer divider={index % 2 === 0}>
+    <Button onPress={() => (!data.disabled ? onShowPress(data.id) : {})}>
+      <ShowContainer disabled={data.disabled} divider={index % 2 === 0}>
         <ImageContainer>
-          <ShowImagePreview source={Res.images.drinksIcon} />
+          <ShowImagePreview reversed={data.reversed} source={data.image} />
         </ImageContainer>
-        <ShowInfoPreview>
-          <Title>{data.name}</Title>
-        </ShowInfoPreview>
+        <Title>{data.name}</Title>
+        {data.disabled && <Description>Coming soon</Description>}
       </ShowContainer>
     </Button>
   );

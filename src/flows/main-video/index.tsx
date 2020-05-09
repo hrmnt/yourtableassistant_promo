@@ -21,6 +21,7 @@ const mainVideoFlow = createStackNavigator(
     },
   },
   {
+    mode: 'modal',
     headerMode: 'none',
     initialRouteName: 'Orders',
   },

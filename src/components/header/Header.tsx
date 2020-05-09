@@ -49,9 +49,25 @@ const Icon = glamorous.image({
 interface HeaderProps {
   title: string;
   onBack?: () => void;
+  main?: boolean;
 }
 
 const Header: FunctionComponent<HeaderProps> = (props) => {
+  if (props.main) {
+    return (
+      <Container
+        style={{
+          backgroundColor: Res.colors.white,
+          paddingHorizontal: Res.space.md,
+        }}>
+        <Block style={{alignItems: 'flex-start'}}>
+          <Title style={{color: '#303547', fontWeight: '700'}}>
+            {props.title}
+          </Title>
+        </Block>
+      </Container>
+    );
+  }
   return (
     <Container>
       <Left>
