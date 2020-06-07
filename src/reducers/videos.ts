@@ -58,6 +58,14 @@ export default function videosReducer(
         loading: false,
         bucket: [],
         bucketItemList: [],
+        table: '',
+      };
+    }
+    case PRODUCT_ACTION.tableAdd: {
+      return {
+        ...state,
+        loading: false,
+        table: action.payload,
       };
     }
     default:

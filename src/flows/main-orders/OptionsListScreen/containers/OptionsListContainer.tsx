@@ -20,12 +20,12 @@ const OptionsListContainer: FunctionComponent<OptionsListContainerProps> = (
   const menuOptions = [
     {
       name: 'New order',
-      id: 'VideoScreenList',
+      id: 'TableScreenList',
       image: Res.images.plusIcon,
     },
     {
       name: 'History',
-      id: 'VideoScreenList',
+      id: 'OrderHistory',
       image: Res.images.whiskeyIcon,
     },
     {

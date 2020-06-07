@@ -38,6 +38,12 @@ const Title = glamorous.text({
   color: '#303547',
   fontWeight: '700',
 });
+const Description = glamorous.text({
+  ...Res.textStyles.body2,
+  fontSize: 12,
+  color: '#ccc',
+  fontWeight: '700',
+});
 
 const CountText = glamorous.text({
   ...Res.textStyles.body2,
@@ -78,6 +84,7 @@ const Item: FunctionComponent<ItemProps> = (props) => {
     <Container key={index}>
       <InfoBlock>
         <Title>{data.name}</Title>
+        <Description>Цена: {data.price}</Description>
       </InfoBlock>
       <ButtonBlock>
         {handleItem && (

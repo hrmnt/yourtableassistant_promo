@@ -32,6 +32,31 @@ export const getListOfCollections = () => async (
     });
 };
 
+export const getListOfTables = () => async (
+  dispatch: (arg0: {type: string; payload: any}) => void,
+) => {
+  console.log('STARTED');
+  dispatch({
+    type: `${LIST_LOAD}`,
+    payload: {},
+  });
+
+  API.getTableLookups()
+    .then((res: any) => {
+      console.log('RES:', res);
+      dispatch({
+        type: `${LIST_SUCCESS}`,
+        payload: res,
+      });
+    })
+    .catch((e: any) => {
+      dispatch({
+        type: `${LIST_ERROR}`,
+        payload: e,
+      });
+    });
+};
+
 export const toggleFavorite = async (id: number) => {
   try {
     const restoredArray = await getData();
@@ -119,4 +144,29 @@ export const makeOrder = (order: any) => async (
 export const connectUser = (user: any) => {
   console.log('CONNECTIONS:', user);
   API.writeUserData(user);
+};
+
+export const changeOrder = () => async (
+  dispatch: (arg0: {type: string; payload: any}) => void,
+) => {
+  console.log('STARTED');
+  dispatch({
+    type: `${LIST_LOAD}`,
+    payload: {},
+  });
+
+  API.getTableLookups()
+    .then((res: any) => {
+      console.log('RES:', res);
+      dispatch({
+        type: `${LIST_SUCCESS}`,
+        payload: res,
+      });
+    })
+    .catch((e: any) => {
+      dispatch({
+        type: `${LIST_ERROR}`,
+        payload: e,
+      });
+    });
 };

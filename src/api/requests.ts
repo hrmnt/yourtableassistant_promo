@@ -32,6 +32,17 @@ class Api {
     return items;
   };
 
+  getTableLookups = async () => {
+    const items = await this.http
+      .collection('tables')
+      .get()
+      .then((querySnapshot: any) => {
+        return convertQuery(querySnapshot);
+      });
+
+    return items;
+  };
+
   getDetailedShow = async (id: string) => {
     const items = await this.http
       .collection('items')
@@ -57,6 +68,26 @@ class Api {
       .add(orderList)
       .then(() => 'Success')
       .catch(() => 'Error');
+  };
+
+  getHistory = async () => {
+    const orders = await this.http
+      .collection('orders')
+      .get()
+      .then((querySnapshot: any) => {
+        return convertQuery(querySnapshot);
+      });
+
+    return orders;
+  };
+
+  changeOrder = async (order: any) => {
+    const orders = await this.http
+      .collection('orders')
+      .doc(order.id)
+      .set(order);
+
+    return orders;
   };
 }
 

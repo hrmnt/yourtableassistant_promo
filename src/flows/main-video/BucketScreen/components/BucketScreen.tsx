@@ -24,7 +24,7 @@ const BucketScreen: FunctionComponent<BucketScreenProps> = (props) => {
   };
   return (
     <Container>
-      <Header onBack={props.onBack} title={'Bucket'} />
+      <Header onBack={props.onBack} title={'Корзина'} />
       <ItemsList
         contentContainerStyle={{padding: Res.space.md}}
         data={props.bucketItemList}

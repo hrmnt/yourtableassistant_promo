@@ -8,8 +8,7 @@ interface VideoScreenProps {}
 const VideoScreen: NavigationScreenComponent<VideoScreenProps> = (props) => {
   const handleShowMovie = useCallback(
     (id: string) => {
-      props.navigation.navigate('VideoInfoScreen', {id});
-      // props.navigation.navigate('TableScreenList', {id});
+      props.navigation.navigate('VideoScreenList', {id});
     },
     [props.navigation],
   );

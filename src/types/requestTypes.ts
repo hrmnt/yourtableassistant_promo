@@ -8,6 +8,7 @@ enum PRODUCT_ACTION {
   itemAdd = 'ITEM_ADD',
   itemRemove = 'ITEM_REMOVE',
   clearBucket = 'CLEAR_BUCKET',
+  tableAdd = 'TABLE_ADD',
 }
 
 export {LIST_ERROR, LIST_LOAD, LIST_SUCCESS, PRODUCT_ACTION};

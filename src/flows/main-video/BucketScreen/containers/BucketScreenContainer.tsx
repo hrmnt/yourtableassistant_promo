@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useCallback} from 'react';
+import React, {FunctionComponent, useCallback, useState} from 'react';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 import {BucketScreen} from '../components';
@@ -62,7 +62,6 @@ const BucketScreenContainer: FunctionComponent<BucketScreenContainerProps> = (
       const list = props.bucket.filter((id: string) => id === item.id);
       newBucket.push({...item, count: list.length});
     });
-
     if (currentUser) {
       const result = await props
         .makeOrder({
@@ -70,11 +69,14 @@ const BucketScreenContainer: FunctionComponent<BucketScreenContainerProps> = (
             name: currentUser.displayName,
             uid: currentUser.uid,
           },
+          table: props.table,
           bucket: newBucket,
+          closed: false,
+          newTime: new Date(),
         })
         .then((res) => {
           Alert.alert(
-            'Order was accepted!',
+            'Заказ принят!',
             '',
             [
               {
@@ -91,6 +93,23 @@ const BucketScreenContainer: FunctionComponent<BucketScreenContainerProps> = (
     }
   };
 
+  // const handleOrder = async () => {
+  //   Alert.prompt(
+  //     'Заказ принят!',
+  //     '',
+  //     [
+  //       {
+  //         text: 'Ok',
+  //         onPress: () => {
+  //           props.clearBucket();
+  //           props.onMainScreen();
+  //         },
+  //       },
+  //     ],
+  //     {cancelable: false},
+  //   );
+  // };
+
   return (
     <>
       <BucketScreen
@@ -103,7 +122,7 @@ const BucketScreenContainer: FunctionComponent<BucketScreenContainerProps> = (
         onPress={() => {
           handleOrder();
         }}>
-        <Title>Order ({props.bucket.length})</Title>
+        <Title>Заказать ({props.bucket.length})</Title>
       </Container>
     </>
   );
@@ -112,6 +131,7 @@ const BucketScreenContainer: FunctionComponent<BucketScreenContainerProps> = (
 const mapStateToProps = (store: any) => ({
   bucket: store.bucket,
   bucketItemList: store.bucketItemList,
+  table: store.table,
 });
 
 const mapDispatchToProps = (dispatch: (arg0: any) => any) => ({
